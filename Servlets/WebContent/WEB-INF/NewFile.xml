@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<!-->servelet configuration-->
+<servlet>
+<servlet-name>Date</servlet-name>
+<servelt-class>Servlets.FirstServlets</servelt-class>
+</servlet>
+<!-- servlets mapping or linking with url -->
+<servlets-mapping>
+<servlet-name>Date</servlet-name>
+<url-pattern>/todaydate</url-pattern>>
+</servlets-mapping>
+</web-app>
