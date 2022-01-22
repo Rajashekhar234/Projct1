@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+        <!-- Cfg DriverManagerDataSource as spring bean -->
+        <bean id="oradrds" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+            <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="username"  value="raj"/>
+            <property name="password"  value="raj"/>
+        </bean>
+        
+      <!--  -->  <bean id="mysqldrds" class="org.springframework.jdbc.datasource.DriverManagerDataSource" primary="true">
+            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql:///fs-ntsp613db"/>
+            <property name="username"  value="root"/>
+            <property name="password"  value="root"/>
+        </bean>
+        
+        
+        
+    <!--   <context:component-scan base-package="com.nt.dao,com.nt.service,com.nt.controller"/>         
+        <context:component-scan base-package="com.nt"/>-->
+        
+        <bean id="StudDAO" class="com.nt.dao.OracleStudentDAOImpl">
+        <constructor-arg ref="orards"/>
+        </bean>
+        <bean id="StudService" class="com.nt.service.StudentMgmtServiceImpl">
+        <constructor-arg name="dao" ref="studDAO"/>
+        </bean>
+        <bean id="controller" class="com.nt.controller.Maincontroller">
+        <constructor-arg  name="service" ref="studService"/>
+        </bean>
+        
+        
+        
+</beans>
